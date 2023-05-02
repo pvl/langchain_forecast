@@ -2,13 +2,13 @@
 from typing import Any, List, Optional
 
 from langchain.agents.agent import AgentExecutor
-from langchain.agents.agent_toolkits.forecast.prompt import FORECAST_PREFIX, FORECAST_SUFFIX
-from langchain.agents.agent_toolkits.forecast.toolkit import ForecastToolkit
 from langchain.agents.mrkl.base import ZeroShotAgent
 from langchain.agents.mrkl.prompt import FORMAT_INSTRUCTIONS
 from langchain.callbacks.base import BaseCallbackManager
 from langchain.chains.llm import LLMChain
 from langchain.llms.base import BaseLLM
+from lcforecast.agentkit.prompt import FORECAST_PREFIX, FORECAST_SUFFIX
+from lcforecast.agentkit.toolkit import ForecastToolkit
 
 
 def create_forecast_agent(

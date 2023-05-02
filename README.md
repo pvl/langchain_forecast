@@ -16,6 +16,10 @@ The following code will create an agent that has the forecast tool. First export
 
 ```
 import os
+from langchain.llms.openai import OpenAI
+from langchain.sql_database import SQLDatabase
+from lcforecast.agentkit import ForecastToolkit
+from lcforecast.agentkit.base import create_forecast_agent
 
 llm = OpenAI(temperature=0)
 db = SQLDatabase.from_uri(os.environ["DB_CONN"])
