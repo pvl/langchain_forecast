@@ -29,7 +29,7 @@ class EmaForecastTool(BaseTool):
         import traceback
 
         if "'" in data:
-            print("Trying hack to replace double quotes")
+            # Trying hack to replace double quotes
             data = data.replace("'", '"')
 
         try:
@@ -44,19 +44,13 @@ class EmaForecastTool(BaseTool):
                     seq.append(val[1])
                 else:
                     seq.append(val)
-            print("seq:", seq)
-            print("dates:", dates)
             dates = [conv_date(d) for d in dates]
-            print("dates conv:", dates)
             df = pd.DataFrame(zip(dates, seq), columns=["timestamp", "values"])
             df["timestamp"] = pd.to_datetime(df["timestamp"])
             df = df.sort_values("timestamp")
             df = remove_last_period(df)
-            print(df)
             ydf = create_forecast_range_single(df)
-            print(ydf)
             res = do_ewm(df, ydf)
-            print(res)
             return {"forecast_date": str(res.timestamp.values[0]), "value": res["values"].values[0]}
         except:
             traceback.print_exc()
